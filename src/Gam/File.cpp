@@ -90,7 +90,7 @@ void File::_parseLine(std::string line)
     }
 
     // rtrim
-    line.erase(std::find_if(line.rbegin(), line.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), line.end());
+    line.erase(std::find_if(line.rbegin(), line.rend(), [](int c) {return !std::isspace(c);}).base(), line.end());
 
     if (line.length() == 0) return;
 
@@ -108,7 +108,7 @@ void File::_parseLine(std::string line)
     std::string name = line.substr(0, line.find(":="));
     std::string value = line.substr(line.find(":=")+2,line.find(";")-line.find(":=")-2);
     // rtrim
-    name.erase(std::find_if(name.rbegin(), name.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), name.end());
+    name.erase(std::find_if(name.rbegin(), name.rend(), [](int c) {return !std::isspace(c);}).base(), name.end());
 
     if (_GVARmode)
     {

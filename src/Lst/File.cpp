@@ -86,7 +86,7 @@ void File::_addString(std::string line)
     if (auto pos = line.find(";")) line = line.substr(0, pos);
 
     // rtrim
-    line.erase(std::find_if(line.rbegin(), line.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), line.end());
+    line.erase(std::find_if(line.rbegin(), line.rend(), [](int ch) { return !std::isspace(ch); }).base(), line.end());
 
     // replace slashes
     std::replace(line.begin(),line.end(),'\\','/');
