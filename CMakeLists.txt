@@ -75,7 +75,7 @@ if(LIBFALLTERGEIST_EMBEDDED)
     set(BUILD_SHARED_LIBS OFF)
 endif()
 
-add_library(falltergeist ${SOURCES} ${HEADERS})
+add_library(falltergeist STATIC ${SOURCES} ${HEADERS})
 target_link_libraries(falltergeist ${ZLIB_LIBRARIES})
 
 if(NOT ANDROID)
